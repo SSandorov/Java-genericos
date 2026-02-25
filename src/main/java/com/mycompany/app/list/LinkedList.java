@@ -16,4 +16,50 @@ public class LinkedList<T> {
             current.next = newNode;
         }
     }
+
+    public void printList() {
+        Node<T> current = head;
+
+        while (current != null) {
+            System.out.println("Elemento: " + current.data);
+            current = current.next;
+        }
+    }
+
+    public void update(T oldData, T newData) {
+        Node<T> current = head;
+
+        while (current != null) {
+            if (current.data.equals(oldData)) {
+                current.data = newData;
+                return;
+            }
+            current = current.next;
+        }
+    }
+
+    public void delete(T data) {
+        if (head == null) {
+            return;
+        }
+
+        if (head.data.equals(data)) {
+            head = head.next;
+            return;
+        }
+
+        Node<T> current = head.next;
+        Node<T> previous = head;
+
+        while (current != null && !current.data.equals(data)) {
+            previous = current;
+            current = current.next;
+        }
+
+        if (current == null) {
+            return;
+        }
+
+        previous.next = current.next;
+    }
 }
